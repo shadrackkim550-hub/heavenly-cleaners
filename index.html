@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heavenly Cleaners Co. | Clean Spaces. Peaceful Places.</title>
+<style>
+:root{
+  --navy:#0A1D3A;
+  --gold:#D4AF37;
+  --gold-dark:#b8952c;
+  --light:#F4F7F6;
+  --white:#ffffff;
+  --text:#1a1a1a;
+  --muted:#555;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif;}
+html{scroll-behavior:smooth;}
+body{background:var(--white);color:var(--text);line-height:1.6;}
+.container{max-width:1100px;margin:0 auto;padding:0 20px;}
+img{max-width:100%;display:block;}
+
+/* --- CLOUDS ANIMATION --- */
+.clouds-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+.cloud {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  filter: blur(8px);
+  animation: floatClouds linear infinite;
+}
+.cloud-1 { width: 180px; height: 60px; top: 15%; left: -200px; animation-duration: 40s; animation-delay: 0s; }
+.cloud-2 { width: 250px; height: 80px; top: 40%; left: -300px; animation-duration: 55s; animation-delay: 5s; }
+.cloud-3 { width: 120px; height: 40px; top: 70%; left: -150px; animation-duration: 30s; animation-delay: 2s; }
+.cloud-4 { width: 300px; height: 90px; top: 10%; left: -350px; animation-duration: 65s; animation-delay: 15s; }
+.cloud-5 { width: 150px; height: 50px; top: 55%; left: -180px; animation-duration: 45s; animation-delay: 10s; }
+.cloud::before, .cloud::after {
+  content: ''; position: absolute; background: inherit; border-radius: 50%;
+}
+.cloud::before { width: 50%; height: 100%; top: -50%; left: 20%; }
+.cloud::after { width: 70%; height: 120%; top: -30%; right: 20%; }
+@keyframes floatClouds {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(100vw + 400px)); }
+}
+
+/* NAVBAR */
+nav{
+  background:var(--navy);
+  padding:12px 0;
+  position:sticky;top:0;z-index:100;
+  border-bottom:2px solid var(--gold);
+}
+nav .container{display:flex;justify-content:space-between;align-items:center;}
+.nav-logo{display:flex;align-items:center;gap:10px;color:var(--white);font-weight:bold;font-size:1.1rem;}
+.nav-logo .mark{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--gold);color:var(--navy);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;font-weight:900;
+}
+.nav-links{display:flex;gap:22px;}
+.nav-links a{color:var(--white);text-decoration:none;font-size:.95rem;}
+.nav-links a:hover{color:var(--gold);}
+@media(max-width:700px){.nav-links{display:none;}}
+
+/* HERO */
+header{
+  background:linear-gradient(135deg,#0A1D3A 0%,#142a52 60%,#0A1D3A 100%);
+  color:var(--white);
+  padding:70px 0 90px;
+  text-align:center;
+  position:relative;
+  border-bottom:5px solid var(--gold);
+  overflow:hidden;
+}
+header::before, header::after { display: none; }
+.logo-big{
+  width:110px;height:110px;margin:0 auto 20px;
+  border-radius:50%;
+  background:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-size:3rem;color:var(--navy);font-weight:900;
+  box-shadow:0 8px 30px rgba(212,175,55,.4);
+  position:relative;z-index:2;
+}
+.logo-big .halo{
+  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  width:60px;height:16px;border-radius:50%;
+  border:3px solid var(--gold);
+  opacity:.8;
+}
+header h1{
+  font-size:2.4rem;color:var(--gold);
+  letter-spacing:2px;margin-bottom:8px;
+  position:relative;z-index:2;
+}
+header .tagline{
+  font-size:1.15rem;font-style:italic;color:#e6e6e6;
+  margin-bottom:6px;position:relative;z-index:2;
+}
+header .sub-tagline{
+  font-size:.95rem;color:#b8b8b8;
+  max-width:520px;margin:0 auto 30px;
+  position:relative;z-index:2;
+}
+.cta-row{
+  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+  position:relative;z-index:2;
+}
+.btn{
+  display:inline-block;padding:14px 30px;
+  border-radius:6px;font-weight:bold;text-decoration:none;
+  font-size:1rem;transition:.3s;border:none;cursor:pointer;
+}
+.btn-gold{background:var(--gold);color:var(--navy);}
+.btn-gold:hover{background:var(--gold-dark);transform:translateY(-2px);}
+.btn-outline{background:transparent;color:var(--white);border:2px solid var(--white);}
+.btn-outline:hover{background:var(--white);color:var(--navy);}
+
+/* TRUST BADGES */
+.trust-badges{
+  display:flex;justify-content:center;gap:40px;
+  margin-top:50px;flex-wrap:wrap;
+  position:relative;z-index:2;
+}
+.badge{text-align:center;color:var(--white);min-width:120px;}
+.badge .icon{font-size:2rem;display:block;margin-bottom:6px;}
+.badge strong{display:block;font-size:1rem;letter-spacing:1px;color:var(--gold);}
+.badge span{font-size:.8rem;color:#bbb;}
+
+/* SECTIONS */
+section{padding:70px 0;position:relative;}
+.section-title{
+  text-align:center;font-size:2rem;color:var(--navy);
+  margin-bottom:15px;position:relative;z-index:2;
+}
+.section-title::after{
+  content:'';display:block;width:60px;height:3px;
+  background:var(--gold);margin:14px auto 0;
+}
+.section-sub{
+  text-align:center;color:var(--muted);max-width:600px;
+  margin:0 auto 45px;font-size:.98rem;position:relative;z-index:2;
+}
+
+/* ABOUT */
+.about{background:var(--white);}
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;
+}
+.about-text p{color:var(--muted);margin-bottom:15px;}
+.about-visual{
+  background:linear-gradient(135deg,var(--navy),#1a3364);
+  border-radius:14px;padding:40px 30px;color:var(--white);
+  text-align:center;border:3px solid var(--gold);
+}
+.about-visual .big-quote{
+  font-size:1.4rem;font-style:italic;line-height:1.5;
+  color:var(--white);margin-bottom:15px;
+}
+.about-visual .big-quote span{color:var(--gold);font-weight:bold;}
+.about-visual .plant{font-size:3rem;margin-bottom:10px;}
+@media(max-width:800px){
+  .about-grid{grid-template-columns:1fr;}
+}
+
+/* SERVICES */
+.services{background:var(--light);}
+.services-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:22px;
+}
+.service-card{
+  background:var(--white);padding:28px 22px;border-radius:10px;
+  box-shadow:0 4px 15px rgba(0,0,0,.05);
+  border-left:4px solid var(--gold);
+  transition:.3s;position:relative;z-index:2;
+}
+.service-card:hover{transform:translateY(-6px);box-shadow:0 10px 25px rgba(0,0,0,.1);}
+.service-card .ico{font-size:1.8rem;margin-bottom:10px;display:block;}
+.service-card h3{color:var(--navy);margin-bottom:8px;font-size:1.1rem;}
+.service-card p{font-size:.9rem;color:var(--muted);}
+
+/* WHY US */
+.why{background:var(--navy);color:var(--white);text-align:center;overflow:hidden;}
+.why .section-title{color:var(--gold);}
+.why-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;margin-top:20px;position:relative;z-index:2;
+}
+.why-card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(212,175,55,.3);
+  border-radius:10px;padding:28px 20px;
+  backdrop-filter: blur(5px);
+}
+.why-card .icon{font-size:2.2rem;margin-bottom:12px;display:block;color:var(--gold);}
+.why-card h3{color:var(--gold);margin-bottom:8px;font-size:1.05rem;}
+.why-card p{font-size:.9rem;color:#ccc;}
+
+/* QUOTE FORM */
+.quote{background:var(--light);}
+.quote-form{
+  max-width:600px;margin:0 auto;background:var(--white);
+  padding:35px 30px;border-radius:12px;
+  box-shadow:0 6px 25px rgba(0,0,0,.08);
+  border-top:5px solid var(--gold);position:relative;z-index:2;
+}
+.quote-form label{
+  display:block;font-weight:600;color:var(--navy);
+  margin-bottom:6px;font-size:.9rem;
+}
+.quote-form input,
+.quote-form select,
+.quote-form textarea{
+  width:100%;padding:12px 14px;margin-bottom:18px;
+  border:1px solid #ddd;border-radius:6px;
+  font-size:1rem;font-family:inherit;
+  background:#fafafa;
+}
+.quote-form input:focus,
+.quote-form select:focus,
+.quote-form textarea:focus{
+  outline:none;border-color:var(--gold);background:var(--white);
+}
+.quote-form button{
+  width:100%;background:var(--navy);color:var(--white);
+  padding:14px;font-size:1.05rem;font-weight:bold;
+  border:none;border-radius:6px;cursor:pointer;
+  transition:.3s;
+}
+.quote-form button:hover{background:var(--gold);color:var(--navy);}
+.form-note{font-size:.8rem;color:var(--muted);text-align:center;margin-top:12px;}
+
+/* CONTACT/FOOTER */
+footer{
+  background:var(--navy);color:var(--white);
+  padding:60px 0 20px;text-align:center;
+}
+footer h2{color:var(--gold);margin-bottom:25px;font-size:1.8rem;}
+.contact-info{
+  display:flex;justify-content:center;gap:35px;
+  flex-wrap:wrap;margin-bottom:30px;font-size:1rem;
+}
+.contact-info div{display:flex;align-items:center;gap:10px;}
+.contact-info a{color:var(--white);text-decoration:none;}
+.contact-info a:hover{color:var(--gold);}
+.map-wrap{
+  max-width:700px;margin:0 auto 40px;border-radius:10px;
+  overflow:hidden;border:3px solid var(--gold);
+}
+.map-wrap iframe{width:100%;height:250px;border:0;display:block;}
+.socials{display:flex;justify-content:center;gap:18px;margin-bottom:30px;}
+.socials a{
+  width:42px;height:42px;border-radius:50%;
+  background:rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);text-decoration:none;font-size:1.2rem;
+  transition:.3s;
+}
+.socials a:hover{background:var(--gold);color:var(--navy);}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.1);
+  padding-top:20px;font-size:.85rem;color:#888;
+}
+
+/* WHATSAPP FLOAT */
+.whatsapp{
+  position:fixed;bottom:20px;right:20px;
+  width:58px;height:58px;border-radius:50%;
+  background:#25D366;color:white;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.8rem;text-decoration:none;
+  box-shadow:0 6px 20px rgba(37,211,102,.5);
+  z-index:999;transition:.3s;
+}
+.whatsapp:hover{transform:scale(1.1);}
+
+@media(max-width:768px){
+  header h1{font-size:1.8rem;}
+  .logo-big{width:90px;height:90px;font-size:2.4rem;}
+  .trust-badges{flex-direction:column;gap:20px;}
+  .contact-info{flex-direction:column;gap:14px;}
+  .section-title{font-size:1.6rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="container">
+    <div class="nav-logo">
+      <div class="mark">H</div>
+      Heavenly Cleaners
+    </div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#why">Why Us</a>
+      <a href="#quote">Get Quote</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO WITH CLOUDS -->
+<header>
+  <div class="clouds-bg">
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    <div class="cloud cloud-4"></div>
+    <div class="cloud cloud-5"></div>
+  </div>
+  
+  <div class="container">
+    <div class="logo-big">
+      <div class="halo"></div>
+      H
+    </div>
+    <h1>HEAVENLY CLEANERS CO.</h1>
+    <p class="tagline">Clean Spaces. Peaceful Places.</p>
+    <p class="sub-tagline">More than just cleaning... We bring comfort, health and peace to your space.</p>
+    <div class="cta-row">
+      <a href="#quote" class="btn btn-gold">Get a Free Quote</a>
+      <a href="tel:0143693491" class="btn btn-outline">📞 Call Now</a>
+    </div>
+
+    <div class="trust-badges">
+      <div class="badge">
+        <span class="icon">🛡️</span>
+        <strong>RELIABLE</strong>
+        <span>You can count on us.</span>
+      </div>
+      <div class="badge">
+        <span class="icon">🤝</span>
+        <strong>TRUSTED</strong>
+        <span>Your space, our priority.</span>
+      </div>
+      <div class="badge">
+        <span class="icon">✨</span>
+        <strong>PROFESSIONAL</strong>
+        <span>Quality in every detail.</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <h2 class="section-title">About Heavenly Cleaners</h2>
+    <p class="section-sub">A Nairobi-based cleaning company built on trust, care, and attention to detail.</p>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Heavenly Cleaners Co. was started by a group of friends who believed that a clean space is more than just tidy — it's a place where you can breathe, rest, and feel at peace.</p>
+        <p>From homes to offices, from post-construction dust to delicate upholstery, we bring the same promise to every job: <strong>reliable service, trusted hands, and professional results.</strong></p>
+        <p>We're based in Nairobi, Kenya, and we serve both residential and commercial clients across the city and surrounding areas.</p>
+      </div>
+      <div class="about-visual">
+        <div class="plant">🌿</div>
+        <p class="big-quote">"Let us handle the mess... <span>so you can enjoy what matters.</span>"</p>
+        <p style="font-size:.85rem;color:#ccc;">— The Heavenly Cleaners Team</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-sub">Professional cleaning solutions tailored to your space and schedule.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="ico">🏠</span>
+        <h3>Residential Cleaning</h3>
+        <p>Keeping your home fresh, healthy, and comfortable for you and your family.</p>
+      </div>
+      <div class="service-card">
+        <span class="ico">🏢</span>
+        <h3>Office & Commercial</h3>
+        <p>Professional cleaning for a productive and welcoming work environment.</p>
+      </div>
+      <div class="service-card">
+        <span class="ico">🧽</span>
+        <h3>Deep Cleaning</h3>
+        <p>Thorough, top-to-bottom cleaning that reaches every corner and crevice.</p>
+      </div>
+      <div class="service-card">
+        <span class="ico">📦</span>
+        <h3>Move In / Move Out</h3>
+        <p>Stress-free transitions with a spotless start or a pristine handover.</p>
+      </div>
+      <div class="service-card">
+        <span class="ico">🛋️</span>
+        <h3>Carpet & Upholstery</h3>
+        <p>Revitalizing your fabrics and removing stubborn stains and dirt.</p>
+      </div>
+      <div class="service-card">
+        <span class="ico">🏗️</span>
+        <h3>Post Construction</h3>
+        <p>Turning your newly built or renovated space into a clean, ready-to-use area.</p>
+      </div>
+      <div class="service-card">
+        <span class="ico">🪟</span>
+        <h3>Window Cleaning</h3>
+        <p>Crystal-clear windows that let the sunshine in and brighten your space.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US WITH CLOUDS -->
+<section class="why" id="why">
+  <div class="clouds-bg">
+    <div class="cloud cloud-1" style="animation-delay: 5s;"></div>
+    <div class="cloud cloud-3" style="animation-delay: 10s;"></div>
+    <div class="cloud cloud-5" style="animation-delay: 2s;"></div>
+  </div>
+  
+  <div class="container">
+    <h2 class="section-title">Why Choose Us</h2>
+    <p class="section-sub" style="color:#bbb;">We don't just clean — we care for your space like it's our own.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <span class="icon">🛡️</span>
+        <h3>Reliable</h3>
+        <p>You can count on us to show up on time and finish the job right.</p>
+      </div>
+      <div class="why-card">
+        <span class="icon">🤝</span>
+        <h3>Trusted</h3>
+        <p>Your space, your privacy, your belongings — our priority.</p>
+      </div>
+      <div class="why-card">
+        <span class="icon">✨</span>
+        <h3>Professional</h3>
+        <p>Quality in every detail, from the first wipe to the final check.</p>
+      </div>
+      <div class="why-card">
+        <span class="icon">💛</span>
+        <h3>Affordable</h3>
+        <p>Fair pricing with no hidden fees. Value you can feel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE FORM -->
+<section class="quote" id="quote">
+  <div class="container">
+    <h2 class="section-title">Request a Free Quote</h2>
+    <p class="section-sub">Tell us about your space and we'll get back to you with a price.</p>
+    <form class="quote-form" action="https://formsubmit.co/heavenlycleaners910@gmail.com" method="POST">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" placeholder="e.g. Jane Wanjiku" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" placeholder="e.g. 0712 345 678" required>
+
+      <label for="email">Email (optional)</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com">
+
+      <label for="service">Service Needed</label>
+      <select id="service" name="service" required>
+        <option value="">-- Select a service --</option>
+        <option>Residential Cleaning</option>
+        <option>Office & Commercial Cleaning</option>
+        <option>Deep Cleaning</option>
+        <option>Move In / Move Out Cleaning</option>
+        <option>Carpet & Upholstery Cleaning</option>
+        <option>Post Construction Cleaning</option>
+        <option>Window Cleaning</option>
+      </select>
+
+      <label for="message">Details</label>
+      <textarea id="message" name="message" rows="4" placeholder="Tell us about your space, size, location, and preferred date..."></textarea>
+
+      <button type="submit">Send Request</button>
+      <p class="form-note">We usually reply within a few hours. Your info stays private.</p>
+    </form>
+  </div>
+</section>
+
+<!-- CONTACT / FOOTER -->
+<footer id="contact">
+  <div class="container">
+    <h2>Contact Us Today</h2>
+    <div class="contact-info">
+      <div>📞 <a href="tel:0143693491">0143 693 491</a></div>
+      <div>✉️ <a href="mailto:heavenlycleaners910@gmail.com">heavenlycleaners910@gmail.com</a></div>
+      <div>📍 <span>Nairobi, Kenya</span></div>
+    </div>
+
+    <div class="map-wrap">
+      <iframe
+        src="https://www.google.com/maps?q=Nairobi,Kenya&output=embed"
+        loading="lazy" allowfullscreen>
+      </iframe>
+    </div>
+
+    <div class="socials">
+      <a href="#" title="Facebook">f</a>
+      <a href="#" title="Instagram">📷</a>
+      <a href="https://wa.me/254143693491" title="WhatsApp">💬</a>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Heavenly Cleaners Co. | Clean Spaces. Peaceful Places.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/254143693491?text=Hello%20Heavenly%20Cleaners%2C%20I%27d%20like%20a%20quote." class="whatsapp" title="Chat on WhatsApp">💬</a>
+
+</body>
+  </html>
